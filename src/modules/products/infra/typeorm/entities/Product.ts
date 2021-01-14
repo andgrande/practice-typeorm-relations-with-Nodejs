@@ -23,6 +23,9 @@ class Products {
   @Column('int')
   quantity: number;
 
+  @Column('int')
+  discount_rate: number | undefined;
+
   @ManyToMany(() => OrdersProducts, order_products => order_products, {
     cascade: true,
   })

@@ -30,6 +30,9 @@ class Orders {
   })
   order_products: OrdersProducts[];
 
+  @Column('decimal')
+  total_amount: number;
+
   @CreateDateColumn()
   created_at: Date;
 

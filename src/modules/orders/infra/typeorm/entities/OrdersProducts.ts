@@ -36,6 +36,9 @@ class OrdersProducts {
   @Column('int')
   quantity: number;
 
+  @Column('int')
+  discount_rate: number;
+
   @CreateDateColumn()
   created_at: Date;
 

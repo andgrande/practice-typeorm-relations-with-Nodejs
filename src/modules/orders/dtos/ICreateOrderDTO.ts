@@ -4,6 +4,7 @@ interface IProduct {
   id: string;
   price: number;
   quantity: number;
+  discount: number | undefined;
 }
 
 export default interface ICreateOrderDTO {

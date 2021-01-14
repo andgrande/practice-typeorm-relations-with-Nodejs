@@ -66,6 +66,7 @@ class CreateOrderService {
         updatedProducts.push({
           ...product,
           price: productsInStock[idx].price,
+          discount: productsInStock[idx].discount_rate,
         });
       }
     });

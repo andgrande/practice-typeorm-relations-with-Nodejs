@@ -6,10 +6,8 @@ import Product from '../infra/typeorm/entities/Product';
 import IProductsRepository from '../repositories/IProductsRepository';
 
 interface IRequest {
-  name: string;
-  price: number;
-  quantity: number;
-  discount?: number;
+  id: string;
+  discount: number;
 }
 
 @injectable()
@@ -19,24 +17,15 @@ class CreateProductService {
     private productsRepository: IProductsRepository,
   ) {}
 
-  public async execute({
-    name,
-    price,
-    quantity,
-    discount,
-  }: IRequest): Promise<Product> {
-    let product = await this.productsRepository.findByName(name);
+  public async execute({ id, discount }: IRequest): Promise<Product> {
+    let product = await this.productsRepository.findById(id);
 
-    if (product) {
-      throw new AppError(
-        'Product already existent. Create a different one or update quantity for this one.',
-      );
+    if (!product) {
+      throw new AppError('Product not found. Please make sure it is registed.');
     }
 
-    product = await this.productsRepository.create({
-      name,
-      price,
-      quantity,
+    product = await this.productsRepository.updateDiscount({
+      id,
       discount,
     });
 

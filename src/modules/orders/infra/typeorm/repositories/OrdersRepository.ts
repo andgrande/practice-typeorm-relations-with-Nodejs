@@ -12,12 +12,18 @@ class OrdersRepository implements IOrdersRepository {
   }
 
   public async create({ customer, products }: ICreateOrderDTO): Promise<Order> {
+    let total_amount = 0;
     const order_products = [
       ...products.map(item => {
+        total_amount +=
+          (item.price -
+            (item.discount ? (item.price * item.discount) / 100 : 0)) *
+          item.quantity;
         return {
           product_id: item.id,
           price: item.price,
           quantity: item.quantity,
+          discount_rate: item.discount,
         };
       }),
     ];
@@ -25,6 +31,7 @@ class OrdersRepository implements IOrdersRepository {
     const order = this.ormRepository.create({
       customer,
       order_products,
+      total_amount,
     });
 
     await this.ormRepository.save(order);
