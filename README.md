@@ -18,7 +18,7 @@
   </a>
 </p>
 
-## :rocket: Sobre o desafio
+## Sobre o desafio
 
 Nesse desafio, você vai estar criando uma nova aplicação para aprender novas coisas e treinar o que você aprendeu até agora no Node.js junto ao TypeScript, incluindo o uso de banco de dados com o TypeORM, e relacionamentos ManyToMany!
 
